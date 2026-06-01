@@ -22,10 +22,22 @@ const setActiveProject = (idProject) => {
     globalState.activeProject = idProject;
 }
 
+const getTodos = () => {
+    const activeProject = globalState.projects.find((project) => project.getId() == globalState.activeProject);
+    return activeProject.getTodos();
+}
+
+const setTodoActiveProject = (newTodo) => {
+    const index = globalState.projects.findIndex(project => project.getId() == globalState.activeProject);
+    globalState.projects[index].setTodos(newTodo);
+}
+
 export {
     getProjects,
     getActiveProject,
     setProjects,
     setNewProject,
     setActiveProject,
+    getTodos,
+    setTodoActiveProject
 }
