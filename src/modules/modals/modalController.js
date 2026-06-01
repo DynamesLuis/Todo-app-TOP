@@ -1,4 +1,4 @@
-import { $projectModal, $inputName } from "../ui/domSelectors";
+import { $projectModal, $inputName, $todoModal } from "../ui/domSelectors";
 
 function openModal() {
     $projectModal.classList.remove("hidden");
@@ -9,7 +9,17 @@ function closeModal() {
     $inputName.value = "";
 }
 
+function openModalTodo() {
+    $todoModal.classList.remove("hidden");
+}
+
+function closeTodoModal() {
+    $todoModal.classList.add("hidden");
+}
+
 export {
     openModal,
-    closeModal
+    closeModal,
+    openModalTodo,
+    closeTodoModal
 }

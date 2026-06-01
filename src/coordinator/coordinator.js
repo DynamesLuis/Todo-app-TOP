@@ -1,9 +1,9 @@
-import { openModal, closeModal } from "../modules/modals/modalController"
+import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject } from "../modules/projects/projectService"
 import { $inputName } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
-import { getProjects,setActiveProject } from "../state/globalState";
+import { getProjects, setActiveProject } from "../state/globalState";
 
 function handleOpenModal() {
     openModal();
@@ -30,9 +30,19 @@ function handleClickNav(e) {
     }
 }
 
+function handleOpenModalTodo() {
+    openModalTodo();
+}
+
+function handleCloseTodoModal() {
+    closeTodoModal();
+}
+
 export {
     handleOpenModal,
     handleCloseModal,
     handleSubmitProject,
-    handleClickNav
+    handleClickNav,
+    handleOpenModalTodo,
+    handleCloseTodoModal
 }
