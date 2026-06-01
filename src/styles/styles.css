@@ -178,6 +178,8 @@ nav li.active-nav {
   font-weight: 700;
 
   position: relative;
+  pointer-events: none;
+  cursor: default;
 }
 
 /* Optional left indicator */

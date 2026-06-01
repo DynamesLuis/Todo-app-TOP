@@ -7,9 +7,9 @@ export default function renderProjects(projects) {
         .map(project => {
             const isActive = project.getId() == getActiveProject() ? true : false
             if (isActive) {
-                return `<li class="active-nav">${project.name}</li>`
+                return `<li data-id="${project.getId()}" class="active-nav">${project.getName()}</li>`
             } else {
-                return `<li>${project.name}</li>`
+                return `<li data-id="${project.getId()}">${project.getName()}</li>`
             }
         })
         .join("");
