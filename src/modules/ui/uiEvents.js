@@ -1,6 +1,4 @@
-import { handleOpenModal, handleCloseModal, handleSubmitProject } from "../../coordinator/coordinator"
-import setActiveProjectOnNav from "./setActiveProject";
-
+import { handleOpenModal, handleCloseModal, handleSubmitProject, handleClickNav } from "../../coordinator/coordinator"
 
 export default function initEvents() {
     const $addProjectBtn = document.querySelector(".add-btn");
@@ -10,7 +8,6 @@ export default function initEvents() {
     $addProjectBtn.addEventListener("click", handleOpenModal);
     $closeProjectModalBtn.addEventListener("click", handleCloseModal);
     $submitProjectModal.addEventListener("click", (e) => handleSubmitProject(e));
-    // meter en un for each
-    $navContainer.addEventListener("click", (e) => setActiveProjectOnNav(e));
+    $navContainer.addEventListener("click", (e) => handleClickNav(e));
 }
 
