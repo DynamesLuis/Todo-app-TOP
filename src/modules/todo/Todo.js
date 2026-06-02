@@ -1,6 +1,7 @@
 export default class Todo {
-    constructor(name, description, date, priority) {
+    constructor(name, description, date, priority, completed = false) {
         this.id = crypto.randomUUID();
+        this.completed = completed;
         this.name = name;
         this.description = description;
         this.date = date;
@@ -22,6 +23,9 @@ export default class Todo {
     getPriority() {
         return this.priority;
     }
+    getCompleted() {
+        return this.completed;
+    }
 
     setName(newName) {
         this._name = newName;
@@ -34,6 +38,9 @@ export default class Todo {
     }
     setPriority(newPriority) {
         this._priority = newPriority;
+    }
+    setCompleted() {
+        this._completed = !this.completed;
     }
 }
 

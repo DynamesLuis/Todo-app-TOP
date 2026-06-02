@@ -72,8 +72,8 @@
 
         </header>
         <div class="tasks-table-container">
-
-            <table class="tasks-table">
+            <p class="empty-tasks-message">No tasks yet. Create one!</p>
+            <table class="tasks-table hidden">
 
                 <thead>
                     <tr>
@@ -206,19 +206,19 @@
             <!-- Name -->
             <div class="form-group">
                 <label for="task-name">Name</label>
-                <input type="text" id="task-name" placeholder="Enter task name">
+                <input type="text" id="task-name" placeholder="Enter task name" name="name">
             </div>
 
             <!-- Description -->
             <div class="form-group">
                 <label for="task-description">Description</label>
-                <textarea id="task-description" rows="4" placeholder="Enter task description"></textarea>
+                <textarea id="task-description" rows="4" placeholder="Enter task description" name="description"></textarea>
             </div>
 
             <!-- Due Date -->
             <div class="form-group">
                 <label for="task-date">Due Date</label>
-                <input type="date" id="task-date">
+                <input type="date" id="task-date" name="dueDate">
             </div>
 
             <!-- Priority -->
@@ -245,7 +245,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">
+            <button type="submit" class="submit-todo-btn">
                 Save Task
             </button>
 

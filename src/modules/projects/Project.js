@@ -20,7 +20,11 @@ export default class Project {
     this._name = newName;
   }
   setTodos(newTodo) {
-    this._todos = this.todos.push(newTodo);
+    this.todos.push(newTodo);
+  }
+
+  setAllTodos(todos) {
+    this.todos = todos;
   }
   
 }

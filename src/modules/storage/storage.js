@@ -1,5 +1,6 @@
 import { getProjects } from "../../state/globalState"
 import Project from "../projects/Project";
+import Todo from "../todo/Todo";
 
 function saveStorage() {
     const projects = getProjects();
@@ -11,7 +12,8 @@ function getStorage() {
     if (storageProjects) {
         const projects = storageProjects.map(project => {
             const rehydratedProject = new Project(project.name)
-            rehydratedProject.setTodos(project.todos)
+            const rehydratedTodos = project.todos.map(todo => new Todo(todo.name, todo.description, todo.date, todo.priority, todo.completed))
+            rehydratedProject.setAllTodos(rehydratedTodos);
             return rehydratedProject;
         })
         return projects

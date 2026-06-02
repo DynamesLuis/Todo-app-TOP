@@ -297,6 +297,24 @@ main {
   transform: translateY(0);
 }
 
+.empty-tasks-message {
+  padding: 3rem 1rem;
+
+  text-align: center;
+
+  color: var(--text-secondary);
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+
+  background-color: var(--bg-secondary);
+
+  opacity: 0.8;
+}
+
 /*Table*/
 /* ===== Container ===== */
 .tasks-table-container {
@@ -742,7 +760,7 @@ main {
 }
 
 /* ===== Submit Button ===== */
-.submit-btn {
+.submit-todo-btn{
   border: none;
   border-radius: 10px;
 
@@ -759,12 +777,12 @@ main {
   transition: 0.2s ease;
 }
 
-.submit-btn:hover {
+.submit-todo-btn:hover {
   background-color: #4338ca;
   transform: translateY(-2px);
 }
 
-.submit-btn:active {
+.submit-todo-btn:active {
   transform: translateY(0);
 }
 
