@@ -113,27 +113,101 @@ nav ul {
   gap: 0.5rem;
 }
 
-/* ===== List Items ===== */
-nav li {
+.project-item,
+.date-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   padding: 0.9rem 1rem;
-
   border-radius: 12px;
-
   font-size: 0.95rem;
   font-weight: 500;
-
   color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.project-item:hover,
+.date-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--accent);
+}
+
+.project-item.active-nav {
+  background-color: var(--accent);
+  color: white;
+  font-weight: 700;
+  position: relative;
+  cursor: default;
+}
+
+.project-item.active-nav::before {
+  content: "";
+
+  position: absolute;
+
+  left: -0.5rem;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 4px;
+  height: 60%;
+
+  border-radius: 999px;
+
+  background-color: var(--accent);
+}
+
+.project-name {
+  flex: 1;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.25rem;
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
+}
+
+.project-item:hover .project-actions {
+  opacity: 1;
+}
+
+.project-actions button {
+  border: none;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 8px;
+
+  background: transparent;
 
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: inherit;
 
   transition: 0.2s ease;
 }
 
-/* ===== Hover ===== */
-nav li:hover {
-  background-color: var(--hover-bg);
+.edit-project-btn:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+}
 
-  color: var(--accent);
+.delete-project-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
 }
 
 /* ===== Add Project Button ===== */
@@ -166,40 +240,6 @@ nav li:hover {
   background-color: var(--accent-hover);
 
   transform: translateY(-2px);
-}
-
-/* ===== Active Navigation ===== */
-.projects-container li.active-nav,
-nav li.active-nav {
-  background-color: var(--accent);
-
-  color: white;
-
-  font-weight: 700;
-
-  position: relative;
-  pointer-events: none;
-  cursor: default;
-}
-
-/* Optional left indicator */
-.projects-container li.active-nav::before,
-nav li.active-nav::before {
-  content: "";
-
-  position: absolute;
-
-  left: -0.5rem;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 4px;
-  height: 60%;
-
-  border-radius: 999px;
-
-  background-color: var(--accent);
 }
 
 /*Main*/
@@ -760,7 +800,7 @@ main {
 }
 
 /* ===== Submit Button ===== */
-.submit-todo-btn{
+.submit-todo-btn {
   border: none;
   border-radius: 10px;
 

@@ -25,6 +25,8 @@ function handleSubmitProject(e) {
 
 function handleClickNav(e) {
     const $element = e.target;
+    console.log($element);
+    
     if ($element.tagName === 'LI') {
         const projectId = $element.dataset.id;
         setActiveProject(projectId);
