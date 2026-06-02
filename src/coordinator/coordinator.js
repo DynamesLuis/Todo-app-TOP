@@ -29,6 +29,7 @@ function handleClickNav(e) {
         const projectId = $element.dataset.id;
         setActiveProject(projectId);
         renderProjects(getProjects());
+        renderTodos();
     }
 }
 

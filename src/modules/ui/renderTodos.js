@@ -3,18 +3,21 @@ import Todo from "../todo/Todo";
 
 export default function renderTodos() {
     const todos = getTodos();
-    if (todos.length == 0) return;
-
     const $table = document.querySelector(".tasks-table");
     const $emptyMessage = document.querySelector(".empty-tasks-message");
+
+    if (todos.length == 0) {
+        $table.classList.add("hidden");
+        $emptyMessage.classList.remove("hidden");
+        return
+    };
+
     $table.classList.remove("hidden");
     $emptyMessage.classList.add("hidden");
 
     const $todoContainer = document.querySelector(".todo-container");
     $todoContainer.innerHTML = "";
-    //comment
-    console.log(todos[0] instanceof Todo);
-    
+
     $todoContainer.innerHTML = todos.map(task => `
     <tr>
         <td>
