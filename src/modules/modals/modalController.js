@@ -1,4 +1,4 @@
-import { $projectModal, $inputName, $todoModal } from "../ui/domSelectors";
+import { $projectModal, $inputName, $todoModal, $todoForm } from "../ui/domSelectors";
 
 function openModal() {
     $projectModal.classList.remove("hidden");
@@ -15,6 +15,7 @@ function openModalTodo() {
 
 function closeTodoModal() {
     $todoModal.classList.add("hidden");
+    $todoForm.reset();
 }
 
 export {

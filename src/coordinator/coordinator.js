@@ -2,7 +2,7 @@ import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject } from "../modules/projects/projectService"
 import { createTodo } from "../modules/todo/todoService"
-import { $inputName } from "../modules/ui/domSelectors";
+import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
@@ -43,7 +43,7 @@ function handleCloseTodoModal() {
 
 function handleSumbitTodo(e) {
     e.preventDefault();
-    const formData = new FormData(document.querySelector(".task-form"));
+    const formData = new FormData($todoForm);
     const task = {
         name: formData.get("name"),
         description: formData.get("description"),
