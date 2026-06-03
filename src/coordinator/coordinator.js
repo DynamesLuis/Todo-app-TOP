@@ -25,14 +25,20 @@ function handleSubmitProject(e) {
 
 function handleClickNav(e) {
     const $element = e.target;
-    console.log($element);
-    
+    let projectId = "";
+
     if ($element.tagName === 'LI') {
-        const projectId = $element.dataset.id;
-        setActiveProject(projectId);
-        renderProjects(getProjects());
-        renderTodos();
+        projectId = $element.dataset.id;
     }
+
+    if ($element.tagName === 'SPAN' || $element.tagName === "DIV") {
+        const $li = $element.parentElement;
+        projectId = $li.dataset.id;
+    }
+
+    setActiveProject(projectId);
+    renderProjects(getProjects());
+    renderTodos();
 }
 
 function handleOpenModalTodo() {
