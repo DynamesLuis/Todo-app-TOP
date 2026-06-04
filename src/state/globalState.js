@@ -38,6 +38,14 @@ const removeProyect = (projectId) => {
     setProjects(filteredProjects);
 }
 
+const changeTodoStatus = (todoId) => {
+    const projectIndex = globalState.projects.findIndex((project) => project.getId() == getActiveProject());
+    
+    const todoIndex = globalState.projects[projectIndex].getTodos().findIndex((todo) => todo.getId() == todoId);
+   
+    globalState.projects[projectIndex].changeTodoStatus(todoIndex);
+}
+
 export {
     getProjects,
     getActiveProject,
@@ -46,5 +54,6 @@ export {
     setActiveProject,
     getTodos,
     setTodoActiveProject,
-    removeProyect
+    removeProyect,
+    changeTodoStatus
 }

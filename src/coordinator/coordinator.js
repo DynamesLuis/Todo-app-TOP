@@ -1,7 +1,7 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect } from "../modules/projects/projectService"
-import { createTodo } from "../modules/todo/todoService"
+import { createTodo, changeStatus } from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
@@ -82,6 +82,26 @@ function handleSumbitTodo(e) {
     saveStorage();
 }
 
+function handleTodoClick(e) {
+    const $element = e.target;
+    let todoId = "";
+    if ($element.tagName === "INPUT") {
+        todoId = $element.parentElement.parentElement.dataset.id;       
+        changeStatus(todoId);
+        renderTodos();
+        console.log("input cliecked");
+        
+    }
+
+    if ($element.tagName === "BUTTON") {
+        console.log("button clicked");
+        
+    }
+
+    saveStorage()
+       
+}
+
 export {
     handleOpenModal,
     handleCloseModal,
@@ -89,5 +109,6 @@ export {
     handleClickNav,
     handleOpenModalTodo,
     handleCloseTodoModal,
-    handleSumbitTodo
+    handleSumbitTodo,
+    handleTodoClick
 }

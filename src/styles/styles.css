@@ -510,18 +510,18 @@ main {
 }
 
 /* ===== Completed Task ===== */
-.completed-task {
+tr:has(input:checked) {
   opacity: 0.6;
 }
 
-.completed-task td {
+tr:has(input:checked) td {
   text-decoration: line-through;
 }
 
 /* Keep buttons readable */
-.completed-task .action-btn,
-.completed-task .priority-badge,
-.completed-task .task-checkbox {
+tr:has(input:checked) .action-btn,
+tr:has(input:checked) .priority-badge,
+tr:has(input:checked) .task-checkbox {
   text-decoration: none;
   opacity: 1;
 }

@@ -40,7 +40,9 @@ export default class Todo {
         this._priority = newPriority;
     }
     setCompleted() {
-        this._completed = !this.completed;
+        this.completed = !this.completed;
+        console.log(this.completed);
+        
     }
 }
 

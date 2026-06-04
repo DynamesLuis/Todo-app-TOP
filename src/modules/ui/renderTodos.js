@@ -19,7 +19,7 @@ export default function renderTodos() {
     $todoContainer.innerHTML = "";
 
     $todoContainer.innerHTML = todos.map(task => `
-    <tr>
+    <tr data-id="${task.getId()}">
         <td>
             <input
                 type="checkbox"

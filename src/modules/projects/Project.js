@@ -26,5 +26,9 @@ export default class Project {
   setAllTodos(todos) {
     this.todos = todos;
   }
-  
+
+  changeTodoStatus(todoIndex) {
+    this.todos[todoIndex].setCompleted();
+  }
+
 }
