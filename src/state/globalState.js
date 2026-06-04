@@ -4,7 +4,7 @@ const defaultProject = new Project("My project");
 
 const globalState = {
     projects: [defaultProject],
-    activeProject: defaultProject.getId(), 
+    activeProject: defaultProject.getId(),
 }
 
 const getProjects = () => globalState.projects;
@@ -32,6 +32,12 @@ const setTodoActiveProject = (newTodo) => {
     globalState.projects[index].setTodos(newTodo);
 }
 
+const removeProyect = (projectId) => {
+    const selectedIndex = globalState.projects.findIndex((project) => project.getId() == projectId);
+    const filteredProjects =  globalState.projects.filter((_, index) => index !== selectedIndex);
+    setProjects(filteredProjects);
+}
+
 export {
     getProjects,
     getActiveProject,
@@ -39,5 +45,6 @@ export {
     setNewProject,
     setActiveProject,
     getTodos,
-    setTodoActiveProject
+    setTodoActiveProject,
+    removeProyect
 }

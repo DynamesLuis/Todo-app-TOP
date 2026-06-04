@@ -1,5 +1,5 @@
 import Project from "./Project";
-import { setNewProject, setActiveProject } from "../../state/globalState"
+import { setNewProject, setActiveProject, removeProyect } from "../../state/globalState"
 
 function createProject(name) {
     const newProject = new Project(name);
@@ -9,9 +9,11 @@ function createProject(name) {
     setActiveProject(idProject);
 }
 
-function deleteProyect(id) {
+function deleteProyect(projectId) {
+    removeProyect(projectId);
 }
 
 export {
     createProject,
+    deleteProyect
 }

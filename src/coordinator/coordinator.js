@@ -1,6 +1,6 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
-import { createProject } from "../modules/projects/projectService"
+import { createProject, deleteProyect } from "../modules/projects/projectService"
 import { createTodo } from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
@@ -27,6 +27,23 @@ function handleClickNav(e) {
     const $element = e.target;
     let projectId = "";
 
+    if ($element.tagName === 'BUTTON') {
+        //checar la class
+        const isDeleteBtn = $element.classList.contains("delete-project-btn");
+        const $li = $element.parentElement.parentElement;
+        projectId = $li.dataset.id;
+        if (isDeleteBtn) {
+
+            deleteProyect(projectId);
+            projectId = getProjects()[0].getId();
+            //renderizar refactorizar para solo usar 1
+        } else {
+            console.log("edit clicked");
+
+            //si no editar
+        }
+    }
+
     if ($element.tagName === 'LI') {
         projectId = $element.dataset.id;
     }
@@ -39,6 +56,7 @@ function handleClickNav(e) {
     setActiveProject(projectId);
     renderProjects(getProjects());
     renderTodos();
+    saveStorage();
 }
 
 function handleOpenModalTodo() {
