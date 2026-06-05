@@ -20,6 +20,7 @@ function handleSubmitProject(e) {
     e.preventDefault();
     createProject($inputName.value);
     renderProjects(getProjects());
+    renderTodos();
     closeModal();
     saveStorage();
 }
