@@ -1,6 +1,6 @@
 export default class Todo {
-    constructor(name, description, date, priority, completed = false) {
-        this.id = crypto.randomUUID();
+    constructor(name, description, date, priority, completed = false, id = crypto.randomUUID()) {
+        this.id = id;
         this.completed = completed;
         this.name = name;
         this.description = description;

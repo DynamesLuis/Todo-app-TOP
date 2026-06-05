@@ -1,12 +1,12 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect } from "../modules/projects/projectService"
-import { createTodo, changeStatus, deleteTodo, getTodoData } from "../modules/todo/todoService"
+import { createTodo, changeStatus, deleteTodo, getTodoData, editTodo } from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
-import { setTodoEditing } from "../modules/modals/todoEditing";
+import { getTodoEditing, setTodoEditing } from "../modules/todo/todoEditing";
 
 function handleOpenModal() {
     openModal();
@@ -71,13 +71,19 @@ function handleCloseTodoModal() {
 function handleSumbitTodo(e) {
     e.preventDefault();
     const formData = new FormData($todoForm);
-    const task = {
+    const todoData = {
         name: formData.get("name"),
         description: formData.get("description"),
-        dueDate: formData.get("dueDate"),
+        date: formData.get("dueDate"),
         priority: formData.get("priority"),
     };
-    createTodo(task.name, task.description, task.dueDate, task.priority);
+
+    const todoEditing = getTodoEditing();
+    if (todoEditing) {
+        editTodo(todoEditing, todoData);
+    } else {
+        createTodo(todoData.name, todoData.description, todoData.date, todoData.priority);
+    }
     renderTodos();
     closeTodoModal();
     saveStorage();

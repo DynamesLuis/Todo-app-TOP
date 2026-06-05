@@ -1,4 +1,5 @@
 import Project from "../modules/projects/Project";
+import { createUpdatedToto } from "../modules/todo/todoService";
 
 const defaultProject = new Project("My project");
 
@@ -56,6 +57,14 @@ const deleteTodoFromState = (todoId) => {
     globalState.projects[projectIndex].setAllTodos(newArray);
 }
 
+const editTodoFromState = (todoEditing, todoData) => {
+    const projectIndex = globalState.projects.findIndex((project) => project.getId() == getActiveProject());
+    const actualTodo = globalState.projects[projectIndex].getTodos().find(todo => todo.getId() == todoEditing.getId());
+    const updatedTodo = createUpdatedToto(actualTodo, todoData);
+    const newArray = globalState.projects[projectIndex].getTodos().map(todo => todo.getId() === actualTodo.getId() ? updatedTodo: todo);
+     globalState.projects[projectIndex].setAllTodos(newArray);
+}
+
 export {
     getProjects,
     getActiveProject,
@@ -67,5 +76,6 @@ export {
     removeProyect,
     changeTodoStatus,
     deleteTodoFromState,
-    getOneTodo
+    getOneTodo,
+    editTodoFromState
 }

@@ -1,5 +1,5 @@
 import { $projectModal, $inputName, $todoModal, $todoForm } from "../ui/domSelectors";
-import { getTodoEditing, resetTodoEditing } from "./todoEditing";
+import { getTodoEditing, resetTodoEditing } from "../todo/todoEditing";
 
 function openModal() {
     $projectModal.classList.remove("hidden");
