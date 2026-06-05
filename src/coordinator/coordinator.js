@@ -1,4 +1,4 @@
-import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
+import { openModal, closeModal, openModalTodo, closeTodoModal, setTodoEditing } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect } from "../modules/projects/projectService"
 import { createTodo, changeStatus, deleteTodo, getTodoData } from "../modules/todo/todoService"
@@ -86,7 +86,7 @@ function handleTodoClick(e) {
     const $element = e.target;
     let todoId = "";
     if ($element.tagName === "INPUT") {
-        todoId = $element.parentElement.parentElement.dataset.id;       
+        todoId = $element.parentElement.parentElement.dataset.id;
         changeStatus(todoId);
         renderTodos();
     }
@@ -98,13 +98,16 @@ function handleTodoClick(e) {
             deleteTodo(todoId);
             renderTodos();
         } else {
-            
+            const todo = getTodoData(todoId);
+            setTodoEditing(todo)
+            //cargarlos
+            openModalTodo();
         }
-        
+
     }
 
     saveStorage()
-       
+
 }
 
 export {
