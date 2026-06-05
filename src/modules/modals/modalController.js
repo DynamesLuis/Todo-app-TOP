@@ -1,10 +1,5 @@
 import { $projectModal, $inputName, $todoModal, $todoForm } from "../ui/domSelectors";
-
-let todoEditing = null;
-
-function setTodoEditing(todo) {
-    todoEditing = todo
-}
+import { getTodoEditing, resetTodoEditing } from "./todoEditing";
 
 function openModal() {
     $projectModal.classList.remove("hidden");
@@ -16,6 +11,7 @@ function closeModal() {
 }
 
 function openModalTodo() {
+    const todoEditing = getTodoEditing();
     if (todoEditing) {
        $todoForm.querySelector("#task-name").value = todoEditing.getName();
        $todoForm.querySelector("#task-description").value = todoEditing.getDescription();
@@ -28,7 +24,7 @@ function openModalTodo() {
 function closeTodoModal() {
     $todoModal.classList.add("hidden");
     $todoForm.reset();
-    todoEditing = null;
+    resetTodoEditing();
 }
 
 export {
@@ -36,5 +32,4 @@ export {
     closeModal,
     openModalTodo,
     closeTodoModal,
-    setTodoEditing,
 }

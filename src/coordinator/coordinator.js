@@ -1,4 +1,4 @@
-import { openModal, closeModal, openModalTodo, closeTodoModal, setTodoEditing } from "../modules/modals/modalController"
+import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect } from "../modules/projects/projectService"
 import { createTodo, changeStatus, deleteTodo, getTodoData } from "../modules/todo/todoService"
@@ -6,6 +6,7 @@ import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
+import { setTodoEditing } from "../modules/modals/todoEditing";
 
 function handleOpenModal() {
     openModal();
@@ -99,8 +100,7 @@ function handleTodoClick(e) {
             renderTodos();
         } else {
             const todo = getTodoData(todoId);
-            setTodoEditing(todo)
-            //cargarlos
+            setTodoEditing(todo);
             openModalTodo();
         }
 
