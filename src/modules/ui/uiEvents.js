@@ -1,4 +1,7 @@
-import { handleOpenModal, handleCloseModal, handleSubmitProject, handleClickNav, handleOpenModalTodo, handleCloseTodoModal, handleSumbitTodo, handleTodoClick } from "../../coordinator/coordinator"
+import {
+    handleOpenModal, handleCloseModal, handleSubmitProject, handleClickNav, handleOpenModalTodo,
+    handleCloseTodoModal, handleSumbitTodo, handleTodoClick, handleSpecialNavClick
+} from "../../coordinator/coordinator"
 
 export default function initEvents() {
     const $addProjectBtn = document.querySelector(".add-btn");
@@ -9,6 +12,7 @@ export default function initEvents() {
     const $addTodoBtn = document.querySelector(".addTask-btn");
     const $closeTodoModal = document.querySelector(".closeTask-modal-Btn");
     const $todoTable = document.querySelector(".todo-container")
+    const $specialContainer = document.querySelector(".special-options");
     $addProjectBtn.addEventListener("click", handleOpenModal);
     $closeProjectModalBtn.addEventListener("click", handleCloseModal);
     $submitProjectModal.addEventListener("click", (e) => handleSubmitProject(e));
@@ -17,5 +21,6 @@ export default function initEvents() {
     $closeTodoModal.addEventListener("click", handleCloseTodoModal);
     $submitTodoModal.addEventListener("click", (e) => handleSumbitTodo(e));
     $todoTable.addEventListener("click", (e) => handleTodoClick(e));
+    $specialContainer.addEventListener("click", (e) => handleSpecialNavClick(e));
 }
 

@@ -1,13 +1,14 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect, editProject, getProjectData } from "../modules/projects/projectService"
-import { createTodo, changeStatus, deleteTodo, getTodoData, editTodo } from "../modules/todo/todoService"
+import { createTodo, changeStatus, deleteTodo, getTodoData, editTodo, getTodayTodos, getSevenDaysTodos } from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
 import { getTodoEditing, setTodoEditing } from "../modules/todo/todoEditing";
 import { getEditingProject, setEditingProject } from "../modules/projects/projectEditing";
+import renderSpecialTodos from "../modules/ui/renderSpecialTodos";
 
 function handleOpenModal() {
     openModal();
@@ -20,7 +21,7 @@ function handleCloseModal() {
 function handleSubmitProject(e) {
     e.preventDefault();
     const editingProject = getEditingProject();
-    if (editingProject) {      
+    if (editingProject) {
         editProject(editingProject, $inputName.value)
     } else {
         createProject($inputName.value);
@@ -44,7 +45,7 @@ function handleClickNav(e) {
             deleteProyect(projectId);
             projectId = getProjects()[0].getId();
         } else {
-            const project = getProjectData(projectId);           
+            const project = getProjectData(projectId);
             setEditingProject(project);
             openModal()
             return;
@@ -53,11 +54,13 @@ function handleClickNav(e) {
 
     if ($element.tagName === 'LI') {
         projectId = $element.dataset.id;
+        removeNavItemActive(document.querySelector(".date-item.active-nav"))
     }
 
     if ($element.tagName === 'SPAN' || $element.tagName === "DIV") {
         const $li = $element.parentElement;
         projectId = $li.dataset.id;
+        removeNavItemActive(document.querySelector(".date-item.active-nav"))
     }
 
     setActiveProject(projectId);
@@ -122,6 +125,30 @@ function handleTodoClick(e) {
 
 }
 
+function handleSpecialNavClick(e) {
+    const $element = e.target;
+    if ($element.tagName == "UL") return;
+    const $specialNav = document.querySelectorAll(".date-item");
+    $specialNav.forEach(item => item.classList.remove("active-nav"))
+    $element.classList.add("active-nav");
+    removeNavItemActive(document.querySelector(".project-item.active-nav"));
+    const isToday = $element.classList.contains("today")
+    if (isToday) {
+        renderSpecialTodos(getTodayTodos());
+    } else {
+        renderSpecialTodos(getSevenDaysTodos());
+    }
+}
+
+
+function removeNavItemActive($item) {
+    console.log($item);
+    
+    if ($item) {
+        $item.classList.remove("active-nav");
+    }
+}
+
 export {
     handleOpenModal,
     handleCloseModal,
@@ -130,5 +157,6 @@ export {
     handleOpenModalTodo,
     handleCloseTodoModal,
     handleSumbitTodo,
-    handleTodoClick
+    handleTodoClick,
+    handleSpecialNavClick
 }

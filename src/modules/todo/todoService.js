@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import { setTodoActiveProject, changeTodoStatus, deleteTodoFromState, getOneTodo, editTodoFromState } from "../../state/globalState"
+import { setTodoActiveProject, changeTodoStatus, deleteTodoFromState, getOneTodo, editTodoFromState, getProjects } from "../../state/globalState"
 
 function createTodo(name, description, date, priority) {
     const newTodo = new Todo(name, description, date, priority);
@@ -33,11 +33,57 @@ function editTodo(todoEditing, todoData) {
     editTodoFromState(todoEditing, todoData)
 }
 
+function getTodayTodos() {
+    const projects = getProjects();
+    let todayTodos = [];
+    projects.forEach(projects => {
+        const todos = projects.getTodos();
+        todos.forEach(todo => {
+            const todayDate = new Date().toISOString().split("T")[0];
+            if (todo.getDate() === todayDate) {
+                todayTodos.push(todo);
+            }
+        })
+    })
+
+    return todayTodos;
+}
+
+function getSevenDaysTodos() {
+    const projects = getProjects();
+    let nextSevenDaysTodos = [];
+    projects.forEach(projects => {
+        const todos = projects.getTodos();
+        todos.forEach(todo => {
+            if (isWithinNext7Days(todo.getDate())) {
+                nextSevenDaysTodos.push(todo);
+            }
+        })
+    })
+
+    return nextSevenDaysTodos;
+
+    function isWithinNext7Days(dateString) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const [year, month, day] = dateString.split("-").map(Number);
+
+        const targetDate = new Date(year, month - 1, day);
+
+        const diffInDays = (targetDate - today) / (1000 * 60 * 60 * 24);
+
+        return diffInDays >= 0 && diffInDays <= 7;
+    }
+}
+
 export {
     createTodo,
     changeStatus,
     deleteTodo,
     getTodoData,
     editTodo,
-    createUpdatedToto
+    createUpdatedToto,
+    getTodayTodos,
+    getSevenDaysTodos
 }

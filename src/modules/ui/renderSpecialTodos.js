@@ -1,22 +1,8 @@
-import { getTodos } from "../../state/globalState";
 import { $todoContainer } from "./domSelectors";
 
-export default function renderTodos() {
-    const todos = getTodos();
-    const $table = document.querySelector(".tasks-table");
-    const $emptyMessage = document.querySelector(".empty-tasks-message");
-
-    if (todos.length == 0) {
-        $table.classList.add("hidden");
-        $emptyMessage.classList.remove("hidden");
-        return
-    };
-
-    $table.classList.remove("hidden");
-    $emptyMessage.classList.add("hidden");
-
-    $todoContainer.innerHTML = "";
-    $todoContainer.innerHTML = todos.map(task => `
+export default function renderSpecialTodos(arrayTodos) {
+   $todoContainer.innerHTML = "";
+   $todoContainer.innerHTML = arrayTodos.map(task => `
     <tr data-id="${task.getId()}">
         <td>
             <input
@@ -63,5 +49,5 @@ export default function renderTodos() {
         </td>
 
     </tr>
-`).join("");
+`).join("");    
 }

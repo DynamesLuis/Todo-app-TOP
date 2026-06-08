@@ -134,7 +134,8 @@ nav ul {
   color: var(--accent);
 }
 
-.project-item.active-nav {
+.project-item.active-nav,
+.date-item.active-nav {
   background-color: var(--accent);
   color: white;
   font-weight: 700;
@@ -142,7 +143,8 @@ nav ul {
   cursor: default;
 }
 
-.project-item.active-nav::before {
+.project-item.active-nav::before,
+.date-item.active-nav::before {
   content: "";
 
   position: absolute;
