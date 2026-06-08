@@ -1,13 +1,20 @@
 import { $projectModal, $inputName, $todoModal, $todoForm } from "../ui/domSelectors";
 import { getTodoEditing, resetTodoEditing } from "../todo/todoEditing";
+import { getEditingProject, resetEditingProject } from "../projects/projectEditing";
 
 function openModal() {
+    const editingProject = getEditingProject();
+    
+    if (editingProject) {
+        $inputName.value = editingProject.getName();
+    }
     $projectModal.classList.remove("hidden");
 }
 
 function closeModal() {
     $projectModal.classList.add("hidden");
     $inputName.value = "";
+    resetEditingProject();
 }
 
 function openModalTodo() {

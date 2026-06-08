@@ -1,12 +1,13 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
-import { createProject, deleteProyect } from "../modules/projects/projectService"
+import { createProject, deleteProyect, editProject, getProjectData } from "../modules/projects/projectService"
 import { createTodo, changeStatus, deleteTodo, getTodoData, editTodo } from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
 import { getTodoEditing, setTodoEditing } from "../modules/todo/todoEditing";
+import { getEditingProject, setEditingProject } from "../modules/projects/projectEditing";
 
 function handleOpenModal() {
     openModal();
@@ -18,9 +19,14 @@ function handleCloseModal() {
 
 function handleSubmitProject(e) {
     e.preventDefault();
-    createProject($inputName.value);
+    const editingProject = getEditingProject();
+    if (editingProject) {      
+        editProject(editingProject, $inputName.value)
+    } else {
+        createProject($inputName.value);
+        renderTodos();
+    }
     renderProjects(getProjects());
-    renderTodos();
     closeModal();
     saveStorage();
 }
@@ -35,14 +41,13 @@ function handleClickNav(e) {
         const $li = $element.parentElement.parentElement;
         projectId = $li.dataset.id;
         if (isDeleteBtn) {
-
             deleteProyect(projectId);
             projectId = getProjects()[0].getId();
-            //renderizar refactorizar para solo usar 1
         } else {
-            console.log("edit clicked");
-
-            //si no editar
+            const project = getProjectData(projectId);           
+            setEditingProject(project);
+            openModal()
+            return;
         }
     }
 
