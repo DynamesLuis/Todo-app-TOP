@@ -1,10 +1,14 @@
 import { openModal, closeModal, openModalTodo, closeTodoModal } from "../modules/modals/modalController"
 import renderProjects from "../modules/ui/renderProjects"
 import { createProject, deleteProyect, editProject, getProjectData } from "../modules/projects/projectService"
-import { createTodo, changeStatus, deleteTodo, getTodoData, editTodo, getTodayTodos, getSevenDaysTodos } from "../modules/todo/todoService"
+import {
+    createTodo, changeStatus, deleteTodo, getTodoData, editTodo, getTodayTodos, getSevenDaysTodos,
+    filterTodos
+
+} from "../modules/todo/todoService"
 import { $inputName, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
-import { getProjects, setActiveProject } from "../state/globalState";
+import { getProjects, setActiveProject, setCurrentView } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
 import { getTodoEditing, setTodoEditing } from "../modules/todo/todoEditing";
 import { getEditingProject, setEditingProject } from "../modules/projects/projectEditing";
@@ -35,9 +39,8 @@ function handleClickNav(e) {
     const $element = e.target;
     let projectId = "";
     if ($element.tagName === 'UL') return;
-    
+
     if ($element.tagName === 'BUTTON') {
-        //checar la class
         const isDeleteBtn = $element.classList.contains("delete-project-btn");
         const $li = $element.parentElement.parentElement;
         projectId = $li.dataset.id;
@@ -65,6 +68,7 @@ function handleClickNav(e) {
 
     setActiveProject(projectId);
     renderProjects(getProjects());
+    setCurrentView("project")
     renderTodos();
     saveStorage();
 }
@@ -134,16 +138,16 @@ function handleSpecialNavClick(e) {
     removeNavItemActive(document.querySelector(".project-item.active-nav"));
     const isToday = $element.classList.contains("today")
     if (isToday) {
-        renderTodos(getTodayTodos());
+        setCurrentView("today")
     } else {
-        renderTodos(getSevenDaysTodos());
+        setCurrentView("next7days")
     }
+
+    renderTodos();
 }
 
 
 function removeNavItemActive($item) {
-    console.log($item);
-    
     if ($item) {
         $item.classList.remove("active-nav");
     }
@@ -151,8 +155,10 @@ function removeNavItemActive($item) {
 
 function handleInputSearch(e) {
     const search = e.target.value
+    if (search === "") renderTodos();
+    
     const todosFiltered = filterTodos(search);
-        
+    renderTodos(todosFiltered);
 }
 
 export {

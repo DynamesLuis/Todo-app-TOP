@@ -1,8 +1,7 @@
 import Todo from "./Todo";
 import {
     setTodoActiveProject, changeTodoStatus, deleteTodoFromState, getOneTodo, editTodoFromState,
-    getProjects,
-    getTodos
+    getProjects, getTodos, getCurrentView
 } from "../../state/globalState"
 
 function createTodo(name, description, date, priority) {
@@ -87,6 +86,15 @@ function filterTodos(search) {
     return filteredTodos
 }
 
+function getVisibleTodos() {
+    const view = getCurrentView()
+    if (view === "project") return getTodos();
+
+    if(view === "today") return getTodayTodos();
+
+    if(view === "next7days") return getSevenDaysTodos();
+}
+
 export {
     createTodo,
     changeStatus,
@@ -96,5 +104,6 @@ export {
     createUpdatedToto,
     getTodayTodos,
     getSevenDaysTodos,
-    filterTodos
+    filterTodos,
+    getVisibleTodos
 }

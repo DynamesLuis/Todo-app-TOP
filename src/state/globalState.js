@@ -7,6 +7,7 @@ const defaultProject = new Project("My project");
 const globalState = {
     projects: [defaultProject],
     activeProject: defaultProject.getId(),
+    view: "project",
 }
 
 const getProjects = () => globalState.projects;
@@ -77,6 +78,9 @@ const editProjectFromState = (projectEditing, projectName) => {
     setProjects(newArray);
 }
 
+const getCurrentView = () => globalState.view;
+const setCurrentView = (view) => globalState.view = view;
+
 export {
     getProjects,
     getActiveProject,
@@ -91,5 +95,7 @@ export {
     getOneTodo,
     editTodoFromState,
     getOneProject,
-    editProjectFromState
+    editProjectFromState,
+    getCurrentView,
+    setCurrentView
 }
