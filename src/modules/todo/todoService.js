@@ -81,8 +81,8 @@ function getSevenDaysTodos() {
 }
 
 function filterTodos(search) {
-    const todos = getTodos();
-    const filteredTodos = todos.filter(todo => todo.name.includes(search))
+    const todos = getVisibleTodos();
+    const filteredTodos = todos.filter(todo => todo.name.toLowerCase().includes(search.toLowerCase()))
     return filteredTodos
 }
 
