@@ -6,7 +6,7 @@ import {
     filterTodos
 
 } from "../modules/todo/todoService"
-import { $inputName, $todoForm } from "../modules/ui/domSelectors";
+import { $inputName, $searchInput, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject, setCurrentView } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
@@ -68,7 +68,8 @@ function handleClickNav(e) {
 
     setActiveProject(projectId);
     renderProjects(getProjects());
-    setCurrentView("project")
+    setCurrentView("project");
+    $searchInput.value = "";
     renderTodos();
     saveStorage();
 }
@@ -142,7 +143,7 @@ function handleSpecialNavClick(e) {
     } else {
         setCurrentView("next7days")
     }
-
+    $searchInput.value = "";
     renderTodos();
 }
 

@@ -2,6 +2,7 @@ import {
     handleOpenModal, handleCloseModal, handleSubmitProject, handleClickNav, handleOpenModalTodo,
     handleCloseTodoModal, handleSumbitTodo, handleTodoClick, handleSpecialNavClick, handleInputSearch
 } from "../../coordinator/coordinator"
+import { $searchInput } from "./domSelectors";
 
 export default function initEvents() {
     const $addProjectBtn = document.querySelector(".add-btn");
@@ -13,7 +14,7 @@ export default function initEvents() {
     const $closeTodoModal = document.querySelector(".closeTask-modal-Btn");
     const $todoTable = document.querySelector(".todo-container")
     const $specialContainer = document.querySelector(".special-options");
-    const $searchInput = document.querySelector(".search-input");
+    
 
     $addProjectBtn.addEventListener("click", handleOpenModal);
     $closeProjectModalBtn.addEventListener("click", handleCloseModal);
