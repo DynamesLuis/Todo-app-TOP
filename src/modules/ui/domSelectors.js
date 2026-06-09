@@ -4,6 +4,8 @@ const $inputName = document.getElementById("name");
 const $todoModal = document.querySelector(".addTodo-modal");
 const $todoForm = document.querySelector(".task-form");
 const $todoContainer = document.querySelector(".todo-container");
+const $emptyMessage = document.querySelector(".empty-tasks-message");
+
 
 export {
     $body,
@@ -11,5 +13,6 @@ export {
     $inputName,
     $todoModal,
     $todoForm,
-    $todoContainer
+    $todoContainer,
+    $emptyMessage
 }

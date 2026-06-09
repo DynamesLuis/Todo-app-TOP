@@ -1,11 +1,16 @@
+import { getCurrentView } from "../../state/globalState";
 import { getVisibleTodos } from "../todo/todoService";
-import { $todoContainer } from "./domSelectors";
+import { $emptyMessage, $todoContainer } from "./domSelectors";
 
 export default function renderTodos(todos = getVisibleTodos()) {
     const $table = document.querySelector(".tasks-table");
-    const $emptyMessage = document.querySelector(".empty-tasks-message");
 
     if (todos.length == 0) {
+        if (getCurrentView() == "project") {
+            $emptyMessage.textContent = "No tasks yet. Create one!"
+        } else {
+            $emptyMessage.textContent = "No match found!"
+        }
         $table.classList.add("hidden");
         $emptyMessage.classList.remove("hidden");
         return
