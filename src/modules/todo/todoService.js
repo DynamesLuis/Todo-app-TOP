@@ -1,5 +1,9 @@
 import Todo from "./Todo";
-import { setTodoActiveProject, changeTodoStatus, deleteTodoFromState, getOneTodo, editTodoFromState, getProjects } from "../../state/globalState"
+import {
+    setTodoActiveProject, changeTodoStatus, deleteTodoFromState, getOneTodo, editTodoFromState,
+    getProjects,
+    getTodos
+} from "../../state/globalState"
 
 function createTodo(name, description, date, priority) {
     const newTodo = new Todo(name, description, date, priority);
@@ -77,6 +81,12 @@ function getSevenDaysTodos() {
     }
 }
 
+function filterTodos(search) {
+    const todos = getTodos();
+    const filteredTodos = todos.filter(todo => todo.name.includes(search))
+    return filteredTodos
+}
+
 export {
     createTodo,
     changeStatus,
@@ -85,5 +95,6 @@ export {
     editTodo,
     createUpdatedToto,
     getTodayTodos,
-    getSevenDaysTodos
+    getSevenDaysTodos,
+    filterTodos
 }

@@ -8,9 +8,7 @@ export default function bootstrapProject() {
     let projects = getStorage();
    
     if (projects) {
-        setProjects(projects);
-        console.log(projects);
-        
+        setProjects(projects);       
         setActiveProject(projects[0].getId());
     } 
 

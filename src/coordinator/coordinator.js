@@ -8,7 +8,6 @@ import { getProjects, setActiveProject } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
 import { getTodoEditing, setTodoEditing } from "../modules/todo/todoEditing";
 import { getEditingProject, setEditingProject } from "../modules/projects/projectEditing";
-import renderSpecialTodos from "../modules/ui/renderSpecialTodos";
 
 function handleOpenModal() {
     openModal();
@@ -35,7 +34,8 @@ function handleSubmitProject(e) {
 function handleClickNav(e) {
     const $element = e.target;
     let projectId = "";
-
+    if ($element.tagName === 'UL') return;
+    
     if ($element.tagName === 'BUTTON') {
         //checar la class
         const isDeleteBtn = $element.classList.contains("delete-project-btn");
@@ -134,9 +134,9 @@ function handleSpecialNavClick(e) {
     removeNavItemActive(document.querySelector(".project-item.active-nav"));
     const isToday = $element.classList.contains("today")
     if (isToday) {
-        renderSpecialTodos(getTodayTodos());
+        renderTodos(getTodayTodos());
     } else {
-        renderSpecialTodos(getSevenDaysTodos());
+        renderTodos(getSevenDaysTodos());
     }
 }
 
@@ -149,6 +149,12 @@ function removeNavItemActive($item) {
     }
 }
 
+function handleInputSearch(e) {
+    const search = e.target.value
+    const todosFiltered = filterTodos(search);
+        
+}
+
 export {
     handleOpenModal,
     handleCloseModal,
@@ -158,5 +164,6 @@ export {
     handleCloseTodoModal,
     handleSumbitTodo,
     handleTodoClick,
-    handleSpecialNavClick
+    handleSpecialNavClick,
+    handleInputSearch
 }

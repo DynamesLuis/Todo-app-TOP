@@ -1,8 +1,7 @@
 import { getTodos } from "../../state/globalState";
 import { $todoContainer } from "./domSelectors";
 
-export default function renderTodos() {
-    const todos = getTodos();
+export default function renderTodos(todos = getTodos()) {
     const $table = document.querySelector(".tasks-table");
     const $emptyMessage = document.querySelector(".empty-tasks-message");
 
