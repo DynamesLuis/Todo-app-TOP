@@ -42,55 +42,56 @@ No frameworks or external libraries were used. The project was intentionally bui
 ---
 
 ## 📂 Project Structure
-src/ 
-│ 
-├── modules/ 
-│ ├── projects/ 
-│ │ ├── Project.js 
-│ │ └── projectService.js 
-│ │ └── projectEditing.js 
-│ │ 
-│ ├── todos/ 
-│ │ ├── Todo.js 
-│ │ └── todoService.js 
-│ │ └── todoEditing.js 
-│ │ 
-│ ├── ui/ 
-│ │ ├── domSelector.js 
-│ │ ├── renderProjects.js 
-│ │ ├── renderTodos.js 
-│ │ ├── uiEvents.js 
-│ │ 
-│ ├── modals/
-│ │ └── modalController.js 
-│ │ 
-│ ├── storage/ 
-│ │ └── storage.js 
-│ │ 
-├── state/ 
-│ │ └── globalState.js 
-│ │ 
+```text
+src/
+├── modules/
+│   ├── projects/
+│   │   ├── Project.js
+│   │   ├── projectService.js
+│   │   └── projectEditing.js
+│   │
+│   ├── todos/
+│   │   ├── Todo.js
+│   │   ├── todoService.js
+│   │   └── todoEditing.js
+│   │
+│   ├── ui/
+│   │   ├── domSelector.js
+│   │   ├── renderProjects.js
+│   │   ├── renderTodos.js
+│   │   └── uiEvents.js
+│   │
+│   ├── modals/
+│   │   └── modalController.js
+│   │
+│   └── storage/
+│       └── storage.js
+│
+├── state/
+│   └── globalState.js
+│
 ├── coordinator/
-│ └── coordinator.js
-├── bootstrap/ 
-│ └── bootstrapApp.js
-│ │ 
-├── styles/ 
-│ │ └── styles.css 
-│ │ 
-├── index.js 
-│ │ 
-├── template.html 
+│   └── coordinator.js
+│
+├── bootstrap/
+│   └── bootstrapApp.js
+│
+├── styles/
+│   └── styles.css
+│
+├── index.js
+└── template.html
+```
 
 The application follows a modular architecture where each module has a single responsibility:
 
-State Module → Stores the application's global state.
-Projects Module → Handles project-related operations.
-Todos Module → Handles todo-related operations.
-Storage Module → Manages Local Storage persistence.
-UI Module → Handles rendering and user interactions.
-Modal Module → Controls modal behavior and form management.
-Coordinator Module → Orchestrates communication between modules.
+- State Module → Stores the application's global state.
+- Projects Module → Handles project-related operations.
+- Todos Module → Handles todo-related operations.
+- Storage Module → Manages Local Storage persistence.
+- UI Module → Handles rendering and user interactions.
+- Modal Module → Controls modal behavior and form management.
+- Coordinator Module → Orchestrates communication between modules.
 
 ---
 
