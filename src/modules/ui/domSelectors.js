@@ -6,6 +6,7 @@ const $todoForm = document.querySelector(".task-form");
 const $todoContainer = document.querySelector(".todo-container");
 const $emptyMessage = document.querySelector(".empty-tasks-message");
 const $searchInput = document.querySelector(".search-input");
+const $addTodoBtn = document.querySelector(".addTask-btn");
 
 export {
     $body,
@@ -15,5 +16,6 @@ export {
     $todoForm,
     $todoContainer,
     $emptyMessage,
-    $searchInput
+    $searchInput,
+    $addTodoBtn
 }

@@ -6,7 +6,7 @@ import {
     filterTodos
 
 } from "../modules/todo/todoService"
-import { $inputName, $searchInput, $todoForm } from "../modules/ui/domSelectors";
+import { $addTodoBtn, $inputName, $searchInput, $todoForm } from "../modules/ui/domSelectors";
 import { saveStorage } from "../modules/storage/storage";
 import { getProjects, setActiveProject, setCurrentView } from "../state/globalState";
 import renderTodos from "../modules/ui/renderTodos";
@@ -72,6 +72,7 @@ function handleClickNav(e) {
     $searchInput.value = "";
     renderTodos();
     saveStorage();
+    $addTodoBtn.disabled = false;
 }
 
 function handleOpenModalTodo() {
@@ -145,6 +146,7 @@ function handleSpecialNavClick(e) {
     }
     $searchInput.value = "";
     renderTodos();
+    $addTodoBtn.disabled = true;
 }
 
 

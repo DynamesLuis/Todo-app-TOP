@@ -339,6 +339,15 @@ main {
   transform: translateY(0);
 }
 
+.addTask-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 .empty-tasks-message {
   padding: 3rem 1rem;
 
