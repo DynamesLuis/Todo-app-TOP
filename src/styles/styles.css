@@ -36,6 +36,9 @@
 body {
   min-height: 100dvh;
   display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 button {
@@ -44,34 +47,71 @@ button {
   align-items: center;
 }
 
-/*nav*/
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+
+.nav-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-btn {
+  display: none;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background-color: transparent;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+   
+    z-index: 1001;
+  }
+}
+
 nav {
   width: 300px;
   height: 100vh;
-
   background-color: var(--bg-secondary);
-
   border-right: 1px solid var(--border-color);
-
   padding: 1.5rem;
-
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
   box-shadow: var(--shadow);
-
   transition: 0.2s ease;
 }
 
-/* ===== Header ===== */
+@media (max-width: 768px) {
+  nav {
+    padding-top: 40px;
+    position: absolute;
+    z-index: 1000;
+    transform: translateX(-100%);
+  }
+
+  nav.open {
+    transform: translateX(0);
+  }
+}
+
 nav header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* ===== Title ===== */
 nav h1 {
   margin: 0;
 
@@ -81,14 +121,12 @@ nav h1 {
   color: var(--text-primary);
 }
 
-/* ===== Section ===== */
 nav section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* ===== Section Titles ===== */
 nav p {
   margin-bottom: 0.8rem;
 
@@ -101,7 +139,6 @@ nav p {
   color: var(--text-secondary);
 }
 
-/* ===== Lists ===== */
 nav ul {
   list-style: none;
 
@@ -249,6 +286,9 @@ nav ul {
 main {
   flex: 5;
   padding: 20px;
+  @media (max-width: 768px) {
+    padding-top: 50px;
+  }
 }
 
 /* ===== Header ===== */

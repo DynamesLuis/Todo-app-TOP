@@ -13,6 +13,9 @@ export default function initEvents() {
     const $closeTodoModal = document.querySelector(".closeTask-modal-Btn");
     const $todoTable = document.querySelector(".todo-container")
     const $specialContainer = document.querySelector(".special-options");
+    const $navBtn = document.querySelector(".menu-btn");
+    const $navOverlay = document.querySelector(".nav-overlay");
+    const $nav = document.querySelector("nav");
 
     $addProjectBtn.addEventListener("click", handleOpenModal);
     $closeProjectModalBtn.addEventListener("click", handleCloseModal);
@@ -24,5 +27,13 @@ export default function initEvents() {
     $todoTable.addEventListener("click", (e) => handleTodoClick(e));
     $specialContainer.addEventListener("click", (e) => handleSpecialNavClick(e));
     $searchInput.addEventListener('keyup', (e) => handleInputSearch(e))
+    $navBtn.addEventListener('click', () => {
+        $navOverlay.classList.toggle("show");
+        $nav.classList.toggle("open");
+    });
+    $navOverlay.addEventListener('click', () => {
+        $navOverlay.classList.remove("show");
+        $nav.classList.remove("open");
+    })
 }
 
